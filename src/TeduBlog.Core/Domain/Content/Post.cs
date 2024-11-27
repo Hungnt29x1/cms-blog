@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TeduBlog.Core.Domain.Content
 {
@@ -22,7 +17,7 @@ namespace TeduBlog.Core.Domain.Content
         public required string Name { get; set; }
 
         [Required]
-        [Column(TypeName ="varchar(250)")]
+        [Column(TypeName = "varchar(250)")]
         public required string Slug { get; set; } // đường link url
 
         [MaxLength(500)]
