@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-page404',
-  templateUrl: './page404.component.html',
-  styleUrls: ['./page404.component.scss']
+  selector: 'app-post',
+  templateUrl: './post.component.html',
 })
-export class Page404Component {
+export class PostComponent {
 
   constructor() { }
 
