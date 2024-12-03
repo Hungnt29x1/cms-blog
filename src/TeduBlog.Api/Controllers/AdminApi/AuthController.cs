@@ -25,6 +25,7 @@ namespace TeduBlog.Api.Controllers.AdminApi
             _tokenService = tokenService;
         }
 
+        [HttpPost]
         public async Task<ActionResult<AuthenticatedResult>> Login([FromBody] LoginRequest request)
         {
             // ---------------- Authentication ------------
@@ -71,8 +72,8 @@ namespace TeduBlog.Api.Controllers.AdminApi
 
             return Ok(new AuthenticatedResult()
             {
-                Token = "",
-                RefreshToken = ""
+                Token = accessToken,
+                RefreshToken = refreshToken
             });
 
 
