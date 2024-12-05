@@ -49,7 +49,6 @@ export class LoginComponent implements OnDestroy {
       userName: this.loginForm.controls['userName'].value,
       password: this.loginForm.controls['password'].value,
     });
-
     this.authApiClient
       .login(request)
       .pipe(takeUntil(this.ngUnsubscribe))
