@@ -24,7 +24,7 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authApiClient: AdminApiAuthApiClient,
-    // private alertService: AlertService,
+    private alertService: AlertService,
     private router: Router
   ) {
     this.loginForm = this.fb.group({
