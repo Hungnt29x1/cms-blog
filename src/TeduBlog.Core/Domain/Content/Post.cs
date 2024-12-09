@@ -47,14 +47,24 @@ namespace TeduBlog.Core.Domain.Content
         public bool IsPaid { get; set; }//đã thanh toán cho user đăng bài chưa
         public double RoyaltyAmount { get; set; }// Tiền bản quyền
         public PostStatus Status { get; set; }
+
+        [Required]
+        [Column(TypeName = "varchar(250)")]
+        public required string CategorySlug { set; get; }
+
+        [MaxLength(250)]
+        [Required]
+        public required string CategoryName { set; get; }
+        [MaxLength(250)]
+        public string AuthorUserName { set; get; }
+        [MaxLength(250)]
+        public string AuthorName { set; get; }
     }
     public enum PostStatus
     {
         Draft = 1,// bản nháp
-        Canceled = 2,//Hủy
-        WaitingForApproval = 3, // đang chờ phê duyệt
-        Rejected = 4,//Loại bỏ
-        WaitingForPublish = 5,// đang chờ xuất bản
-        Published = 6// đã xuất bản
+        WaitingForApproval = 2, // đang chờ phê duyệt
+        Rejected = 3,//Loại bỏ
+        Published = 4// đã xuất bản
     }
 }
