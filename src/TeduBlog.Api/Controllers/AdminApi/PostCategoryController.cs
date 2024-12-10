@@ -10,7 +10,6 @@ using static TeduBlog.Core.SeedWorks.Constants.Permissions;
 namespace TeduBlog.Api.Controllers.AdminApi
 {
     [Route("api/admin/post-category")]
-    [ApiController]
     public class PostCategoryController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;

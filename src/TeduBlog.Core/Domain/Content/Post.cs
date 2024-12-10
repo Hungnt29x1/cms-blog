@@ -62,9 +62,9 @@ namespace TeduBlog.Core.Domain.Content
     }
     public enum PostStatus
     {
-        Draft = 1,// bản nháp
-        WaitingForApproval = 2, // đang chờ phê duyệt
-        Rejected = 3,//Loại bỏ
-        Published = 4// đã xuất bản
+        Draft = 0,// bản nháp
+        WaitingForApproval = 1, // đang chờ phê duyệt
+        Rejected = 2,//Loại bỏ
+        Published = 3// đã xuất bản
     }
 }

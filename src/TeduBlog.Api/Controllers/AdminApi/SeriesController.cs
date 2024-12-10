@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using TeduBlog.Core.Models.Content;
 using TeduBlog.Core.Models;
-using TeduBlog.Core.SeedWorks.Constants;
+using TeduBlog.Core.Models.Content;
 using TeduBlog.Core.SeedWorks;
+using TeduBlog.Core.SeedWorks.Constants;
 
 namespace TeduBlog.Api.Controllers.AdminApi
 {
