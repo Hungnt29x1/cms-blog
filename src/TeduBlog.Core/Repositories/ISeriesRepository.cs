@@ -1,7 +1,7 @@
-﻿using TeduBlog.Core.Models.Content;
+﻿using TeduBlog.Core.Domain.Content;
 using TeduBlog.Core.Models;
+using TeduBlog.Core.Models.Content;
 using TeduBlog.Core.SeedWorks;
-using TeduBlog.Core.Domain.Content;
 
 namespace TeduBlog.Core.Repositories
 {
@@ -12,5 +12,6 @@ namespace TeduBlog.Core.Repositories
         Task RemovePostToSeries(Guid seriesId, Guid postId);
         Task<List<PostInListDto>> GetAllPostsInSeries(Guid seriesId);
         Task<bool> IsPostInSeries(Guid seriesId, Guid postId);
+        Task<bool> HasPost(Guid seriesId);
     }
 }

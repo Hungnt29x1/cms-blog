@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using TeduBlog.Core.Domain.Content;
-using TeduBlog.Core.Models.Content;
 using TeduBlog.Core.Models;
+using TeduBlog.Core.Models.Content;
 using TeduBlog.Core.Repositories;
 using TeduBlog.Data.SeedWorks;
 
 namespace TeduBlog.Data.Repositories
 {
-    public class SeriesRepository : RepositoryBase<Series, Guid>, ISeriesRepository
+    public class SeriesRepository : RepositoryBase<Core.Domain.Content.Series, Guid>, ISeriesRepository
     {
         private readonly IMapper _mapper;
         public SeriesRepository(TeduBlogContext context, IMapper mapper) : base(context)
@@ -61,6 +61,11 @@ namespace TeduBlog.Data.Repositories
                         where pis.SeriesId == seriesId
                         select p;
             return await _mapper.ProjectTo<PostInListDto>(query).ToListAsync();
+        }
+
+        public async Task<bool> HasPost(Guid seriesId)
+        {
+            return await _context.PostInSeries.AnyAsync(x => x.SeriesId == seriesId);
         }
 
         public async Task<bool> IsPostInSeries(Guid seriesId, Guid postId)

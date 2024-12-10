@@ -8,21 +8,23 @@ using TeduBlog.Api.Filters;
 using TeduBlog.Core.Domain.Identity;
 using TeduBlog.Core.Models;
 using TeduBlog.Core.Models.System;
+using TeduBlog.Core.SeedWorks;
 using TeduBlog.Core.SeedWorks.Constants;
 using static TeduBlog.Core.SeedWorks.Constants.Permissions;
 
 namespace TeduBlog.Api.Controllers.AdminApi
 {
     [Route("api/admin/user")]
-    [ApiController]
     public class UserController : ControllerBase
     {
         private readonly IMapper _mapper;
         private readonly UserManager<AppUser> _userManager;
-        public UserController(IMapper mapper, UserManager<AppUser> userManager)
+        private readonly IUnitOfWork _unitOfWork;
+        public UserController(UserManager<AppUser> userManager, IMapper mapper, IUnitOfWork unitOfWork)
         {
             _mapper = mapper;
             _userManager = userManager;
+            _unitOfWork = unitOfWork;
         }
 
         [HttpGet("{id}")]
@@ -195,15 +197,13 @@ namespace TeduBlog.Api.Controllers.AdminApi
                 return NotFound();
             }
             var currentRoles = await _userManager.GetRolesAsync(user);
-            var removedResult = await _userManager.RemoveFromRolesAsync(user, currentRoles);
+            await _unitOfWork.Users.RemoveUserFromRoles(user.Id, currentRoles.ToArray());
             var addedResult = await _userManager.AddToRolesAsync(user, roles);
-            if (!addedResult.Succeeded || !removedResult.Succeeded)
+            if (!addedResult.Succeeded)
             {
                 List<IdentityError> addedErrorList = addedResult.Errors.ToList();
-                List<IdentityError> removedErrorList = removedResult.Errors.ToList();
                 var errorList = new List<IdentityError>();
                 errorList.AddRange(addedErrorList);
-                errorList.AddRange(removedErrorList);
 
                 return BadRequest(string.Join("<br/>", errorList.Select(x => x.Description)));
             }
