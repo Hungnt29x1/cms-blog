@@ -10,9 +10,9 @@ import {
   AdminApiUserApiClient,
   UserDto,
   UserDtoPagedResult,
-} from 'src/app/api/admin-api.service.generated';
-import { AlertService } from 'src/app/shared/services/alert.service';
-import { MessageConstants } from 'src/app/shared/constants/messages.constant';
+} from '../../../api/admin-api.service.generated';
+import { AlertService } from '../../../shared/services/alert.service';
+import { MessageConstants } from '../../../shared/constants/messages.constant';
 
 @Component({
   selector: 'app-user',

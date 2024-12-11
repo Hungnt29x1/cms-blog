@@ -4,9 +4,9 @@ import {
   AdminApiRoleApiClient,
   RoleDto,
   RoleDtoPagedResult,
-} from 'src/app/api/admin-api.service.generated';
+} from '../../../api/admin-api.service.generated';
 import { DialogService, DynamicDialogComponent } from 'primeng/dynamicdialog';
-import { AlertService } from 'src/app/shared/services/alert.service';
+import { AlertService } from '../../../shared/services/alert.service';
 import { ConfirmationService } from 'primeng/api';
 import { RoleDetailComponent } from './role-detail.component';
 import { MessageConstants } from '../../../shared/constants/messages.constant';
