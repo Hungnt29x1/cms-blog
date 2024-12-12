@@ -1,4 +1,9 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using TeduBlog.Core.ConfigOptions;
+using TeduBlog.Core.Domain.Identity;
+using TeduBlog.Data;
+using TeduBlog.WebApp.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -11,6 +16,15 @@ builder.Services.AddControllersWithViews();
 
 //Custom setup
 builder.Services.Configure<SystemConfig>(configuration.GetSection("SystemConfig"));
+
+builder.Services.AddDbContext<TeduBlogContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddIdentity<AppUser, AppRole>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddEntityFrameworkStores<TeduBlogContext>()
+                  .AddDefaultTokenProviders();
+
+builder.Services.AddScoped<IUserClaimsPrincipalFactory<AppUser>,
+   CustomClaimsPrincipalFactory>();
 
 var app = builder.Build();
 
