@@ -10,6 +10,7 @@ namespace TeduBlog.Data.SeedWorks
     public class UnitOfWork : IUnitOfWork
     {
         private readonly TeduBlogContext _context;
+
         public UnitOfWork(TeduBlogContext context, IMapper mapper, UserManager<AppUser> userManager)
         {
             _context = context;
@@ -18,23 +19,23 @@ namespace TeduBlog.Data.SeedWorks
             Series = new SeriesRepository(context, mapper);
             Transactions = new TransactionRepository(context, mapper);
             Users = new UserRepository(context);
+            Tags = new TagRepository(context, mapper);
         }
-
         public IPostRepository Posts { get; private set; }
-
         public IPostCategoryRepository PostCategories { get; private set; }
         public ISeriesRepository Series { get; private set; }
         public ITransactionRepository Transactions { get; private set; }
+
         public IUserRepository Users { get; private set; }
+        public ITagRepository Tags { get; private set; }
 
         public async Task<int> CompleteAsync()
         {
-            // Ghi các thay đổi xuống cơ sở dữ liệu
             return await _context.SaveChangesAsync();
         }
+
         public void Dispose()
         {
-            // Giải phóng tài nguyên
             _context.Dispose();
         }
     }
